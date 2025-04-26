@@ -4,7 +4,7 @@ export default function useWeather() {
   const [city, setCity] = useState('London');
   const [weather, setWeather] = useState(null);
   const [loading, setLoading] = useState(false);
-  const API_KEY = 'your-api-key'; // Get from OpenWeatherMap
+  const API_KEY = process.env.REACT_APP_API_KEY; 
 
   const fetchWeather = async () => {
     setLoading(true);
@@ -21,7 +21,7 @@ export default function useWeather() {
     }
   };
 
-  useEffect(() => { fetchWeather(); }, []);
+  useEffect(() => { fetchWeather(); }, [city]);
 
   return { city, setCity, weather, loading, fetchWeather };
 }

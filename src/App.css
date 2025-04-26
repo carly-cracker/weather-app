@@ -82,30 +82,57 @@
   }
   
   /* Weather Card Styling */
-  .weather-card {
-    background: rgba(255, 255, 255, 0.2);
+  /* Weather Card Styling */
+.weather-card {
+    background: rgba(255, 255, 255, 0.15);
     border-radius: 16px;
     padding: 20px;
     margin-top: 20px;
     text-align: center;
     width: 300px;
     color: white;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Soft shadow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+  }
+  
+  .weather-card:hover {
+    transform: scale(1.05); /* Slightly zooms in */
+    box-shadow: 0 6px 20px rgba(0, 123, 255, 0.7); /* Stronger glow */
+    background: rgba(255, 255, 255, 0.2); /* Slight background change on hover */
   }
   
   .weather-card h2 {
     margin-bottom: 10px;
-  }
-  
-  .weather-card img {
-    width: 80px;
-    height: 80px;
-    margin-top: 10px;
+    font-size: 1.8rem;
+    font-weight: bold;
+    text-transform: capitalize;
   }
   
   .weather-card p {
     font-size: 1.2rem;
     margin: 5px 0;
+    font-weight: 300;
   }
+  
+  .weather-card img {
+    width: 90px;
+    height: 90px;
+    margin-top: 10px;
+    animation: bounce 1s infinite; /* Add bounce effect */
+  }
+  
+  /* Weather Card Animation: Bouncing Icon */
+  @keyframes bounce {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0); }
+  }
+  
+  /* Optional: Add a subtle glow around the text */
+  .weather-card h2, .weather-card p {
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
+  }
+  
   
   /* Logout Button */
   .logout-button {
