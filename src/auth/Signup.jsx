@@ -24,6 +24,7 @@ export function Signup() {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           placeholder="Email"
+          required
         />
         <br />
         <input
@@ -31,6 +32,7 @@ export function Signup() {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           placeholder="Password"
+          required
         />
         <br />
         <button type="submit">Sign Up</button>

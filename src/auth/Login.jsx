@@ -1,16 +1,16 @@
 import { useState } from 'react';
-import { useAuth } from '../auth/AuthProvider';
+import { useAuth } from './AuthProvider';
 
 export function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const { login } = useAuth();
+  const { logIn } = useAuth(); // Not login, it's logIn based on your AuthProvider
   const [error, setError] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await login(email, password);
+      await logIn(email, password);
     } catch (err) {
       setError(err.message);
       console.error('Login error:', err);

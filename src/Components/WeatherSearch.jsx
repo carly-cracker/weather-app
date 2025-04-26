@@ -1,49 +1,12 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 
-export default function WeatherSearch({ setWeatherData, setLoading, setError }) {
-  const [city, setCity] = useState('');
-
-  const fetchWeather = async (cityName) => {
-    try {
-      setLoading(true);
-      setError(null);
-      
-      const response = await fetch('/db.json');
-      const data = await response.json();
-      
-      const foundCity = data.weather.find(item => 
-        item.name.toLowerCase() === cityName.toLowerCase()
-      );
-
-      if (!foundCity) {
-        throw new Error('City not found in our database');
-      }
-      
-      // Format to match API response structure
-      const formattedData = {
-        name: foundCity.name,
-        sys: { country: foundCity.country },
-        main: {
-          temp: foundCity.temp,
-          feels_like: foundCity.feels_like,
-          humidity: foundCity.humidity
-        },
-        wind: { speed: foundCity.wind_speed },
-        weather: foundCity.weather
-      };
-      
-      setWeatherData(formattedData);
-    } catch (err) {
-      setError(err.message);
-    } finally {
-      setLoading(false);
-    }
-  };
+const WeatherSearch = ({ setCity }) => {
+  const [inputCity, setInputCity] = useState('');
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (city.trim()) {
-      fetchWeather(city);
+    if (inputCity.trim()) {
+      setCity(inputCity); 
     }
   };
 
@@ -51,11 +14,13 @@ export default function WeatherSearch({ setWeatherData, setLoading, setError }) 
     <form onSubmit={handleSubmit}>
       <input
         type="text"
-        value={city}
-        onChange={(e) => setCity(e.target.value)}
-        placeholder="Enter city name (London, Paris, Tokyo)"
+        value={inputCity}
+        onChange={(e) => setInputCity(e.target.value)}
+        placeholder="Enter city name"
       />
       <button type="submit">Get Weather</button>
     </form>
   );
-}
+};
+
+export default WeatherSearch;
